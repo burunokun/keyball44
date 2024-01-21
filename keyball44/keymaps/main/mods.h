@@ -121,18 +121,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-
-const key_override_t n1 = ko_make_basic(MOD_MASK_SHIFT, KC_EXLM, KC_1);
-const key_override_t n2 = ko_make_basic(MOD_MASK_SHIFT, KC_LBRC, KC_2);
-const key_override_t n3 = ko_make_basic(MOD_MASK_SHIFT, KC_LCBR, KC_3);
-const key_override_t n4 = ko_make_basic(MOD_MASK_SHIFT, KC_LPRN, KC_4);
-const key_override_t n5 = ko_make_basic(MOD_MASK_SHIFT, KC_PLUS, KC_5);
-const key_override_t n6 = ko_make_basic(MOD_MASK_SHIFT, KC_EQL , KC_6);
-const key_override_t n7 = ko_make_basic(MOD_MASK_SHIFT, KC_RPRN, KC_7);
-const key_override_t n8 = ko_make_basic(MOD_MASK_SHIFT, KC_RCBR, KC_8);
-const key_override_t n9 = ko_make_basic(MOD_MASK_SHIFT, KC_RBRC, KC_9);
-const key_override_t n0 = ko_make_basic(MOD_MASK_SHIFT, KC_GRV , KC_0);
-
 const key_override_t aesc = ko_make_basic(MOD_MASK_ALT, KC_SCLN, KC_ESC);
 const key_override_t vmut = ko_make_basic(MOD_MASK_ALT, KC_VOLU, KC_MUTE);
 
@@ -144,16 +132,6 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &brdn,
     &vldn,
     &vmut,
-    &n1,
-    &n2,
-    &n3,
-    &n4,
-    &n5,
-    &n6,
-    &n7,
-    &n8,
-    &n9,
-    &n0,
     NULL
 };
 

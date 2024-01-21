@@ -28,29 +28,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_BSPC  ,
     OSM(MOD_LALT) , KC_A  , KC_S   , KC_D     , KC_F     , KC_G     ,            KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_ENT   ,
     OSM(MOD_LSFT) , KC_Z  , KC_X   , KC_C     , KC_V     , KC_B     ,            KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , OSM(MOD_RSFT),
-    OSM(MOD_LGUI) ,G(S(KC_S)), OSL(3)   , KC_SPACE , OSM(MOD_LCTL)  ,            OSL(2) , OSL(1)  , _______  , _______  , KC_DEL
+    KC_ESC     , MO(3)  , OSM(MOD_LGUI)  , KC_SPACE , OSM(MOD_LCTL) ,            OSL(2) , OSL(1)  , _______  , _______  , G(S(KC_S))
   ),
 
-    // Test shift for numbers in layer 1
   [1] = LAYOUT_universal(
-    KC_TAB   , KC_EXLM  , KC_LBRC  , KC_LCBR  , KC_LPRN  , KC_PLUS  ,            KC_EQL   , KC_RPRN  , KC_RCBR  , KC_RBRC  , KC_GRV   , KC_BSPC  ,
-    KC_LALT  , KC_TILD  , KC_CIRC  , KC_HASH  , KC_ASTR  , KC_DLR   ,            KC_LEFT  , KC_DOWN  , KC_UP    , KC_RGHT  , KC_QUOT  , KC_ENT   ,
-    KC_LSFT  , KC_AT    , KC_PERC  , KC_UNDS  , KC_AMPR  , KC_BSLS  ,            KC_HOME  , KC_PGDN  , KC_PGUP  , KC_END   , KC_MINUS , KC_RSFT  ,
-    KC_LGUI  , KC_INT1  , KC_ESC   , KC_SPACE , KC_LCTL  ,                       KC_RCTL  , G(KC_SPC), _______  , _______  , KC_DEL
+    KC_TAB   , KC_EXLM  , KC_LBRC  , KC_LCBR  , KC_LPRN  , KC_PERC  ,            KC_EQL   , KC_RPRN  , KC_RCBR  , KC_RBRC  , KC_QUOT  , KC_BSPC  ,
+    KC_LALT  , KC_GRV   , KC_HOME  , KC_PGDN  , KC_PGUP  , KC_END   ,            KC_LEFT  , KC_DOWN  , KC_UP    , KC_RGHT  , _______  , KC_ENT   ,
+    KC_LSFT  , KC_AT    , KC_CIRC  , KC_DLR   , KC_ASTR  , KC_BSLS  ,            KC_AMPR  , KC_HASH  , _______  , _______  , KC_MINUS , KC_RSFT  ,
+    KC_INT3  , KC_INT1  , KC_LGUI  , KC_SPACE , KC_LCTL  ,                       KC_RCTL  , G(KC_SPC), _______  , _______  , KC_DEL
   ),
 
   [2] = LAYOUT_universal(
-    KC_TAB   , KC_VOLU  , KC_F8    , KC_F4    , KC_F9    , KC_F10   ,            _______  , KC_7     , KC_8     , KC_9     , _______  , KC_BSPC  ,
-    KC_LALT  , KC_BRIU  , KC_F7    , KC_F5    , KC_F2    , KC_F11   ,            _______  , KC_4     , KC_5     , KC_6     , KC_0     , KC_ENT   ,
-    KC_LSFT  , KC_BRK   , KC_DOT   , KC_COMM  , KC_F7    , KC_F12   ,            _______  , KC_1     , KC_2     , KC_3     , KC_MINUS , KC_RSFT  ,
-    KC_LGUI  , KC_INS   , KC_ESC   , KC_SPACE , KC_LCTL  ,                       KC_APP   , KC_RALT  , _______  , _______  , KC_DEL
+    KC_TAB   , KC_VOLU  , KC_F8    , KC_F4    , KC_F9    , KC_F10   ,            KC_EQL   , KC_7     , KC_8     , KC_9     , KC_0     , KC_BSPC  ,
+    KC_LALT  , KC_BRIU  , KC_F7    , KC_F5    , KC_F2    , KC_F11   ,            _______  , KC_4     , KC_5     , KC_6     , _______  , KC_ENT   ,
+    KC_LSFT  , KC_INS   , KC_DOT   , KC_COMM  , KC_BRK   , KC_F12   ,            _______  , KC_1     , KC_2     , KC_3     , KC_MINUS , KC_RSFT  ,
+    KC_INT4  , KC_INT2  , KC_LGUI  , KC_SPACE , KC_LCTL  ,                       KC_APP   , KC_RALT  , _______  , _______  , KC_DEL
   ),
 
   [3] = LAYOUT_universal(
-    _______  , _______  , KC_MAIL  , KC_MYCM  , G(KC_R)  , _______  ,            _______  , _______  , _______  , _______  , _______  , _______  ,
-    KC_LCTL  , _______  , G(KC_B)  , G(KC_D)  , G(KC_T)  , _______  ,            _______  , _______  , KC_SCR   , KC_BTN2  , _______  , KC_RALT  ,
-    KC_LSFT  , _______  , G(KC_X)  , _______  , _______  , _______  ,            _______  , KC_BTN1  , _______  , _______  , _______  , KC_RSFT  ,
-    KC_LGUI  , _______  , G(KC_S)  , _______  , _______  ,                       KC_BTN4  , KC_BTN5  , _______  , _______  , KC_DEL
+    _______  , _______  , _______  , _______  , _______  , _______  ,            _______  , _______  , _______  , _______  , _______  , _______  ,
+    KC_LALT  , _______  , _______  , _______  , _______  , _______  ,            _______  , _______  , KC_SCR   , KC_BTN2  , _______  , _______  ,
+    KC_LSFT  , _______  , _______  , _______  , _______  , _______  ,            _______  , KC_BTN1  , _______  , _______  , _______  , KC_RSFT  ,
+    _______  , _______  , _______  , _______  , KC_LCTL  ,                       KC_BTN4  , KC_BTN5  , _______  , _______  , _______
   ),
 
 };
