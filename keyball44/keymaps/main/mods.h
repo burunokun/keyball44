@@ -7,9 +7,9 @@
 #include QMK_KEYBOARD_H
 #include "quantum.h"
 
-// void pointing_device_init_user(void) {
-//     set_auto_mouse_enable(true);
-// };
+void pointing_device_init_user(void) {
+    set_auto_mouse_enable(true);
+};
 
 enum custom_keycodes {
     KC_SCR = SAFE_RANGE,
@@ -122,18 +122,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-const key_override_t aesc = ko_make_basic(MOD_MASK_ALT, KC_SCLN, KC_ESC);
-const key_override_t vmut = ko_make_basic(MOD_MASK_ALT, KC_VOLU, KC_MUTE);
-const key_override_t btn1 = ko_make_basic(MOD_MASK_GUI, KC_M, KC_BTN1);
-const key_override_t btn2 = ko_make_basic(MOD_MASK_GUI, KC_DOT, KC_BTN2);
+const key_override_t aesc = ko_make_basic(MOD_MASK_ALT,   KC_SCLN, KC_ESC);
+const key_override_t vmut = ko_make_basic(MOD_MASK_ALT,   KC_VOLU, KC_MUTE);
 const key_override_t lang = ko_make_basic(MOD_MASK_SHIFT, KC_INT2, KC_INT4);
 const key_override_t vldn = ko_make_basic(MOD_MASK_SHIFT, KC_VOLU, KC_VOLD);
 const key_override_t brdn = ko_make_basic(MOD_MASK_SHIFT, KC_BRIU, KC_BRID);
 
 const key_override_t **key_overrides = (const key_override_t *[]){
     &aesc,
-    &btn1,
-    &btn2,
     &brdn,
     &vldn,
     &vmut,

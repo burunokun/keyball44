@@ -37,6 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ONESHOT_TAP_TOGGLE 1
 #define ONESHOT_TIMEOUT 500
 
-// #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
-// #define AUTO_MOUSE_DEFAULT_LAYER 3
-// #define AUTO_MOUSE_TIME 350
+#define POINTING_DEVICE_AUTO_MOUSE_ENABLE
+#define AUTO_MOUSE_DEFAULT_LAYER 3
+#define AUTO_MOUSE_TIME 350
+
