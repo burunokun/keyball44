@@ -152,21 +152,21 @@ const key_override_t pgdn = ko_make_basic(MOD_MASK_CTRL,  KC_PGUP, C(KC_PGDN));
 const key_override_t vldn = ko_make_basic(MOD_MASK_SHIFT, KC_VOLU, KC_VOLD);
 const key_override_t brdn = ko_make_basic(MOD_MASK_SHIFT, KC_BRIU, KC_BRID);
 
-const key_override_t kc1 = ko_make_basic(MOD_MASK_SHIFT, KC_EXLM, KC_1);
-const key_override_t kc2 = ko_make_basic(MOD_MASK_SHIFT, KC_LBRC, KC_2);
-const key_override_t kc3 = ko_make_basic(MOD_MASK_SHIFT, KC_LCBR, KC_3);
-const key_override_t kc4 = ko_make_basic(MOD_MASK_SHIFT, KC_LPRN, KC_4);
-const key_override_t kc5 = ko_make_basic(MOD_MASK_SHIFT, KC_GRV , KC_5);
-const key_override_t kc6 = ko_make_basic(MOD_MASK_SHIFT, KC_EQL , KC_6);
-const key_override_t kc7 = ko_make_basic(MOD_MASK_SHIFT, KC_RPRN, KC_7);
-const key_override_t kc8 = ko_make_basic(MOD_MASK_SHIFT, KC_RCBR, KC_8);
-const key_override_t kc9 = ko_make_basic(MOD_MASK_SHIFT, KC_RBRC, KC_9);
-const key_override_t kc0 = ko_make_basic(MOD_MASK_SHIFT, KC_PLUS, KC_0);
+// const key_override_t kc1 = ko_make_basic(MOD_MASK_SHIFT, KC_EXLM, KC_1);
+// const key_override_t kc2 = ko_make_basic(MOD_MASK_SHIFT, KC_LBRC, KC_2);
+// const key_override_t kc3 = ko_make_basic(MOD_MASK_SHIFT, KC_LCBR, KC_3);
+// const key_override_t kc4 = ko_make_basic(MOD_MASK_SHIFT, KC_LPRN, KC_4);
+// const key_override_t kc5 = ko_make_basic(MOD_MASK_SHIFT, KC_GRV , KC_5);
+// const key_override_t kc6 = ko_make_basic(MOD_MASK_SHIFT, KC_EQL , KC_6);
+// const key_override_t kc7 = ko_make_basic(MOD_MASK_SHIFT, KC_RPRN, KC_7);
+// const key_override_t kc8 = ko_make_basic(MOD_MASK_SHIFT, KC_RCBR, KC_8);
+// const key_override_t kc9 = ko_make_basic(MOD_MASK_SHIFT, KC_RBRC, KC_9);
+// const key_override_t kc0 = ko_make_basic(MOD_MASK_SHIFT, KC_PLUS, KC_0);
 
 const key_override_t **key_overrides = (const key_override_t *[]) {
-    /*&aesc,*/ &brdn, &vldn, &vmut, &ctab, &pgup, &pgdn,
-    &kc1, &kc2, &kc3, &kc4, &kc5,
-    &kc6, &kc7, &kc8, &kc9, &kc0,
+    /* &aesc,*/ &brdn, &vldn, &vmut, &ctab, &pgup, &pgdn,
+    /* &kc1, &kc2, &kc3, &kc4, &kc5,*/
+    /* &kc6, &kc7, &kc8, &kc9, &kc0,*/
     NULL
 };
 

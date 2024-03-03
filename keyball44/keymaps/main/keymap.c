@@ -27,29 +27,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_universal(
     TD(TD_ALT_TAB), KC_Q  , KC_W   , KC_E     , KC_R     , KC_T     ,            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_BSPC  ,
     KC_ESC        , KC_A  , KC_S   , KC_D     , KC_F     , KC_G     ,            KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_ENT   ,
-    OSM(MOD_LSFT) , KC_Z  , KC_X   , KC_C     , KC_V     , KC_B     ,            KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , OSM(MOD_RALT) ,
-    KC_BRIU  , KC_VOLU  , OSM(MOD_LGUI) , KC_SPACE  , OSM(MOD_LCTL) ,            OSL(2) , OSL(1)  , _______  , _______  , KC_ALGR
+    OSM(MOD_LSFT) , KC_Z  , KC_X   , KC_C     , KC_V     , KC_B     ,            KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , OSM(MOD_RSFT) ,
+    _______  , OSM(MOD_LGUI) , OSM(MOD_LALT) , KC_SPACE  , OSM(MOD_LCTL) ,       OSL(2) , OSL(1)  , _______  , _______  , KC_ALGR
   ),
 
   [1] = LAYOUT_universal(
-    KC_TAB   , KC_EXLM  , KC_LBRC  , KC_LCBR  , KC_LPRN  , KC_GRV   ,            KC_EQL   , KC_RPRN  , KC_RCBR  , KC_RBRC  , KC_PLUS  , KC_BSPC  ,
-    KC_ESC   , KC_TILD  , KC_CIRC  , KC_HASH  , KC_ASTR  , KC_DLR   ,            KC_LEFT  , KC_DOWN  , KC_UP    , KC_RGHT  , KC_QUOT  , KC_ENT   ,
-    KC_LSFT  , KC_AT    , KC_PERC  , KC_UNDS  , KC_BSLS  , KC_AMPR  ,            KC_HOME  , KC_PGDN  , KC_PGUP  , KC_END   , KC_MINUS , KC_RALT  ,
-    KC_INT3  , KC_INT1  , KC_LGUI  , KC_SPACE , KC_LCTL  ,                       KC_RCTL  , G(KC_SPC), _______  , _______  , KC_DEL
+    KC_TAB   , KC_EXLM  , KC_LBRC  , KC_LCBR  , KC_LPRN  , KC_QUOT  ,            KC_MINUS , KC_RPRN  , KC_RCBR  , KC_RBRC  , KC_EQL   , _______  ,
+    _______  , KC_GRV   , KC_CIRC  , KC_HASH  , KC_ASTR  , KC_DLR   ,            KC_LEFT  , KC_DOWN  , KC_UP    , KC_RGHT  , _______  , _______  ,
+    _______  , KC_AT    , KC_PERC  , KC_INT1  , KC_BSLS  , KC_AMPR  ,            KC_HOME  , KC_PGDN  , KC_PGUP  , KC_END   , _______  , _______  ,
+    KC_INT3  , _______  , _______  , KC_SPACE , _______  ,                       KC_APP   , G(KC_SPC), _______  , _______  , KC_DEL
   ),
 
   [2] = LAYOUT_universal(
-    KC_TAB   ,A(S(KC_B)), KC_BRK   , KC_F8    , KC_F4    , KC_F10   ,            KC_ASTR  , KC_7     , KC_8     , KC_9     , KC_EQL   , KC_BSPC  ,
-    KC_ESC   , G(KC_T)  , CW_TOGG  , KC_F5    , KC_F2    , KC_F11   ,            _______  , KC_4     , KC_5     , KC_6     , KC_0     , KC_ENT   ,
-    KC_LSFT  , G(KC_B)  , KC_DOT   , KC_COMM  , KC_F9    , KC_F12   ,            KC_PERC  , KC_1     , KC_2     , KC_3     , KC_MINUS , KC_RALT  ,
-    _______  , _______  , KC_LGUI  , KC_SPACE , KC_LCTL  ,                       KC_APP   , KC_RALT  , _______  , _______  , KC_DEL
+    KC_TAB   ,A(S(KC_B)), KC_BRK   , KC_F8    , KC_F4    , KC_F10   ,            KC_MINUS , KC_7     , KC_8     , KC_9     , KC_EQL   , _______  ,
+    _______  , G(KC_T)  , CW_TOGG  , KC_F5    , KC_F2    , KC_F11   ,            KC_0     , KC_4     , KC_5     , KC_6     , _______  , _______  ,
+    _______  , G(KC_B)  , KC_BRIU  , KC_VOLU  , KC_F9    , KC_F12   ,            _______  , KC_1     , KC_2     , KC_3     , _______  , _______  ,
+    KC_BRK   , _______  , _______  , KC_SPACE , _______  ,                       KC_APP   , G(KC_SPC), _______  , _______  , KC_DEL
   ),
 
   [3] = LAYOUT_universal(
     _______  , _______  , _______  , _______  , _______  , _______  ,            _______  , _______  , _______  , _______  , _______  , _______  ,
-    KC_ESC   , _______  , _______  , _______  , _______  , _______  ,            _______  , _______  , KC_SCR   , _______  , _______  , _______  ,
-    KC_LSFT  , _______  , _______  , _______  , _______  , _______  ,            KC_BTN4  , KC_BTN1  , KC_BTN2  , KC_BTN5  , _______  , KC_RSFT  ,
-    _______  , _______  , KC_LGUI  , _______  , KC_LCTL  ,                       _______  , _______  , _______  , _______  , _______
+    _______  , _______  , _______  , _______  , _______  , _______  ,            _______  , _______  , KC_SCR   , _______  , _______  , _______  ,
+    _______  , _______  , _______  , _______  , _______  , _______  ,            KC_BTN4  , KC_BTN1  , KC_BTN2  , KC_BTN5  , _______  , _______  ,
+    _______  , _______  , _______  , _______  , _______  ,                       _______  , _______  , _______  , _______  , _______
   ),
 
 };
