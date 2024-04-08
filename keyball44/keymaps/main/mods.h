@@ -44,9 +44,9 @@ int16_t scroll_h_mouse_interval_counter;
 int16_t scroll_v_threshold = 50;
 int16_t scroll_h_threshold = 50;
 
-void pointing_device_init_user(void) {
-    set_auto_mouse_enable(true);
-};
+// void pointing_device_init_user(void) {
+//     set_auto_mouse_enable(true);
+// };
 
 
 int16_t my_abs(int16_t num) {
@@ -114,14 +114,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_SCR: {
              if (record->event.pressed) {
                  state = SCROLLING;
-                 layer_on(3);
              } else {
                  state = NONE;
-                 layer_off(3);
              }
-         } return false; // break;
+         } return false;
 
-        case TD(TD_ALT_TAB):  // list all tap dance keycodes with tap-hold configurations
+        case TD(TD_ALT_TAB):
             action = &tap_dance_actions[TD_INDEX(TD_ALT_TAB)];
             if (!record->event.pressed && action->state.count && !action->state.finished) {
                 tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
@@ -142,7 +140,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-// const key_override_t aesc = ko_make_basic(MOD_MASK_ALT,   KC_SCLN, KC_ESC);
+const key_override_t esc  = ko_make_basic(MOD_MASK_ALT,   KC_SCLN, KC_ESC);
+
 const key_override_t vmut = ko_make_basic(MOD_MASK_ALT,   KC_VOLU, KC_MUTE);
 const key_override_t ctab = ko_make_basic(MOD_MASK_ALT,   KC_TAB, A(C(KC_TAB)));
 
@@ -152,24 +151,29 @@ const key_override_t pgdn = ko_make_basic(MOD_MASK_CTRL,  KC_PGUP, C(KC_PGDN));
 const key_override_t vldn = ko_make_basic(MOD_MASK_SHIFT, KC_VOLU, KC_VOLD);
 const key_override_t brdn = ko_make_basic(MOD_MASK_SHIFT, KC_BRIU, KC_BRID);
 
-// const key_override_t kc1 = ko_make_basic(MOD_MASK_SHIFT, KC_EXLM, KC_1);
-// const key_override_t kc2 = ko_make_basic(MOD_MASK_SHIFT, KC_LBRC, KC_2);
-// const key_override_t kc3 = ko_make_basic(MOD_MASK_SHIFT, KC_LCBR, KC_3);
-// const key_override_t kc4 = ko_make_basic(MOD_MASK_SHIFT, KC_LPRN, KC_4);
-// const key_override_t kc5 = ko_make_basic(MOD_MASK_SHIFT, KC_GRV , KC_5);
-// const key_override_t kc6 = ko_make_basic(MOD_MASK_SHIFT, KC_EQL , KC_6);
-// const key_override_t kc7 = ko_make_basic(MOD_MASK_SHIFT, KC_RPRN, KC_7);
-// const key_override_t kc8 = ko_make_basic(MOD_MASK_SHIFT, KC_RCBR, KC_8);
-// const key_override_t kc9 = ko_make_basic(MOD_MASK_SHIFT, KC_RBRC, KC_9);
-// const key_override_t kc0 = ko_make_basic(MOD_MASK_SHIFT, KC_PLUS, KC_0);
+// const key_override_t kc1 = ko_make_basic(MOD_MASK_SHIFT, KC_LPRN, KC_F1);
+// const key_override_t kc2 = ko_make_basic(MOD_MASK_SHIFT, KC_ASTR, KC_F2);
+// const key_override_t kc3 = ko_make_basic(MOD_MASK_SHIFT, KC_AT  , KC_F3);
+// const key_override_t kc4 = ko_make_basic(MOD_MASK_SHIFT, KC_LCBR, KC_F4);
+// const key_override_t kc5 = ko_make_basic(MOD_MASK_SHIFT, KC_HASH, KC_F5);
+// const key_override_t kc6 = ko_make_basic(MOD_MASK_SHIFT, KC_AMPR, KC_F6);
+// const key_override_t kc7 = ko_make_basic(MOD_MASK_SHIFT, KC_LBRC, KC_F7);
+// const key_override_t kc8 = ko_make_basic(MOD_MASK_SHIFT, KC_CIRC, KC_F8);
+// const key_override_t kc9 = ko_make_basic(MOD_MASK_SHIFT, KC_PERC, KC_F9);
+// const key_override_t kc10 = ko_make_basic(MOD_MASK_SHIFT, KC_PLUS, KC_F10);
+// const key_override_t kc11 = ko_make_basic(MOD_MASK_SHIFT, KC_DLR , KC_F11);
+// const key_override_t kc12 = ko_make_basic(MOD_MASK_SHIFT, KC_EXLM, KC_F12);
 
 const key_override_t **key_overrides = (const key_override_t *[]) {
-    /* &aesc,*/ &brdn, &vldn, &vmut, &ctab, &pgup, &pgdn,
-    /* &kc1, &kc2, &kc3, &kc4, &kc5,*/
-    /* &kc6, &kc7, &kc8, &kc9, &kc0,*/
+    &esc, &brdn, &vldn, &vmut, &ctab, &pgup, &pgdn,
+    // &kc1, &kc2, &kc3,
+    // &kc4, &kc5, &kc6,
+    // &kc7, &kc8,&kc9,
+    // &kc10, &kc11, &kc12,
     NULL
 };
 
+/*
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
         // Keycodes that continue Caps Word, with shift applied.
@@ -190,8 +194,7 @@ bool caps_word_press_user(uint16_t keycode) {
             return false;  // Deactivate Caps Word.
     }
 }
-
-
+*/
 
 void tap_dance_tap_hold_finished(tap_dance_state_t *state, void *user_data) {
     tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
