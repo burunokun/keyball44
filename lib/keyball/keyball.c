@@ -27,6 +27,9 @@ const uint8_t CPI_DEFAULT    = KEYBALL_CPI_DEFAULT / 100;
 const uint8_t CPI_MAX        = pmw3360_MAXCPI + 1;
 const uint8_t SCROLL_DIV_MAX = 7;
 
+
+keyball_config_t keyball_config;
+
 keyball_t keyball = {
     .this_have_ball = false,
     .that_enable    = false,
@@ -477,9 +480,9 @@ void keyboard_post_init_kb(void) {
 
     // read keyball configuration from EEPROM
     if (eeconfig_is_enabled()) {
-        keyball_config_t c = {.raw = eeconfig_read_kb()};
-        keyball_set_cpi(c.cpi);
-        keyball_set_scroll_div(c.sdiv);
+        keyball_config.raw = eeconfig_read_kb();
+        keyball_set_cpi(keyball_config.cpi);
+        keyball_set_scroll_div(keyball_config.sdiv);
     }
 
     keyball_on_adjust_layout(KEYBALL_ADJUST_PENDING);
@@ -537,11 +540,9 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 keyball_set_scroll_div(0);
                 break;
             case KBC_SAVE: {
-                keyball_config_t c = {
-                    .cpi  = keyball.cpi_value,
-                    .sdiv = keyball.scroll_div,
-                };
-                eeconfig_update_kb(c.raw);
+                keyball_config.cpi  = keyball.cpi_value;
+                keyball_config.sdiv = keyball.scroll_div;
+                eeconfig_update_kb(keyball_config.raw);
             } break;
 
             case CPI_I100:
@@ -574,4 +575,13 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     }
 
     return true;
+}
+
+bool is_jis_mode(void) {
+    return keyball_config.is_jis_mode;
+}
+
+void set_jis_mode(bool is_jis_mode) {
+    keyball_config.is_jis_mode = is_jis_mode;
+    eeconfig_update_user(keyball_config.raw);
 }

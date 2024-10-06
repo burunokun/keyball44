@@ -1,16 +1,42 @@
 #ifndef MODS_H
 #define MODS_H
 
+#include QMK_KEYBOARD_H
+#include "quantum.h"
+#include "lib/ansi_to_jis/translate_ansi_to_jis.h"
+
 #include <stdbool.h>
 #include <stdint.h>
 
-#include QMK_KEYBOARD_H
-#include "quantum.h"
-
-enum custom_keycodes {
-    KC_SCR = SAFE_RANGE,
+// Define names for layers
+enum _layers {
+    _QWERTY = 0,
+    _SYMBOLS,
+    _FUNCS,
+    _MOUSE,
 };
 
+// Define names for layer/mod keys
+#define L_SYMB OSL(_SYMBOLS)
+#define L_FUNC OSL(_FUNCS)
+
+#define M_LALT OSM(MOD_LALT)
+#define M_LCTL OSM(MOD_LCTL)
+#define M_LGUI OSM(MOD_LGUI)
+#define M_LSFT OSM(MOD_LSFT)
+
+#define M_RALT OSM(MOD_RALT)
+#define M_RCTL OSM(MOD_RCTL)
+#define M_RGUI OSM(MOD_RGUI)
+#define M_RSFT OSM(MOD_RSFT)
+
+// Custom key for scrolling and JIS mode
+enum custom_keycodes {
+    KC_SCR = SAFE_RANGE,
+    KC_JIS,
+};
+
+// keyboard states
 enum click_state {
     NONE,
     SCROLLING
@@ -23,8 +49,6 @@ typedef struct {
     uint16_t hold;
     uint16_t held;
 } tap_dance_tap_hold_t;
-
-
 
 const uint16_t ignore_disable_mouse_layer_keys[] = {
     KC_LGUI,
@@ -40,6 +64,7 @@ int16_t scroll_v_threshold = 50;
 int16_t scroll_h_threshold = 50;
 
 void pointing_device_init_user(void) {
+    set_auto_mouse_layer(_MOUSE);
     set_auto_mouse_enable(true);
 };
 
@@ -48,6 +73,7 @@ int16_t my_abs(int16_t num) {
 }
 
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+
     int16_t current_x = mouse_report.x;
     int16_t current_y = mouse_report.y;
     int16_t current_h = 0;
@@ -102,7 +128,19 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     return mouse_report;
 }
 
+// auto mouse activation threshold to prevent misfire
+bool auto_mouse_activation(report_mouse_t mouse_report) {
+    int16_t activation_threshold = 3;
+    if (mouse_report.x < -activation_threshold || mouse_report.x > activation_threshold ||
+        mouse_report.y < -activation_threshold || mouse_report.y > activation_threshold) {
+        return true;
+    }
+
+    return false;
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+
     switch (keycode) {
         case KC_SCR: {
              if (record->event.pressed) {
@@ -111,6 +149,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                  state = NONE;
              }
          } return false;
+
+        case KC_JIS: {
+            if (record->event.pressed) {
+                set_jis_mode(!is_jis_mode());
+            }
+        } return false;
+
         default: {
             size_t len = sizeof(ignore_disable_mouse_layer_keys) / sizeof(ignore_disable_mouse_layer_keys[0]);
             for (size_t i = 0; i < len; ++i) {
@@ -122,13 +167,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } break;
     }
 
-    return true;
+    if (!is_jis_mode()) {
+        return true;
+    }
+
+    // if in JIS mode then convert keys to its JIS equivalent
+    return process_record_user_a2j(keycode, record);
 }
 
-// Escape
-// const key_override_t aesc = ko_make_basic(MOD_MASK_ALT,   KC_SCLN, KC_ESC);
-
-// Volume
+// Extra keys
 const key_override_t vmut = ko_make_basic(MOD_MASK_ALT,   KC_VOLU, KC_MUTE);
 const key_override_t vldn = ko_make_basic(MOD_MASK_SHIFT, KC_VOLU, KC_VOLD);
 const key_override_t brdn = ko_make_basic(MOD_MASK_SHIFT, KC_BRIU, KC_BRID);
@@ -138,7 +185,6 @@ const key_override_t pgup = ko_make_basic(MOD_MASK_CTRL,  KC_PGDN, C(KC_PGUP));
 const key_override_t pgdn = ko_make_basic(MOD_MASK_CTRL,  KC_PGUP, C(KC_PGDN));
 
 const key_override_t **key_overrides = (const key_override_t *[]) {
-    // &aesc,
     &brdn, &vldn, &vmut,
     &pgup, &pgdn,
     NULL

@@ -95,6 +95,7 @@ typedef union {
     struct {
         uint8_t cpi : 7;
         uint8_t sdiv : 3; // scroll divider
+        bool is_jis_mode: 1;
     };
 } keyball_config_t;
 
@@ -131,6 +132,7 @@ typedef struct {
     keypos_t       last_pos;
     report_mouse_t last_mouse;
 } keyball_t;
+
 
 typedef enum {
     KEYBALL_ADJUST_PENDING   = 0,
@@ -176,3 +178,7 @@ uint8_t keyball_get_cpi(void);
 
 // TODO: document
 void keyball_set_cpi(uint8_t cpi);
+
+// User defined functions
+bool is_jis_mode(void);
+void set_jis_mode(bool is_jis_mode);
