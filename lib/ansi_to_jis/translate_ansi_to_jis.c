@@ -17,7 +17,6 @@ const uint16_t translate_map[][2] = {
     {KC_BSLS, KC_INT3},
     {KC_RBRC, KC_NUHS},
     {KC_QUOT, S(KC_7)},
-    {KC_GRV,  S(KC_LBRC)},
     {KC_RPRN, S(KC_9)},
     {KC_AT,   KC_LBRC},
     {KC_CIRC, KC_EQL},
@@ -54,28 +53,38 @@ bool process_record_user_a2j(uint16_t kc, keyrecord_t *record) {
     uint8_t mods_kc  = QK_MODS_GET_MODS(kc);
     uint8_t basic_kc = QK_MODS_GET_BASIC_KEYCODE(kc);
 
-    if (record->event.pressed) {
-        uint8_t  mod_state                    = get_mods();
-        bool     shift_state_or_shift_embeded = (mod_state | mods_kc) & MOD_MASK_SHIFT;
-        uint16_t shift_embeded_basic_kc       = shift_state_or_shift_embeded ? S((uint16_t)basic_kc) : basic_kc;
-        uint16_t shift_embeded_basic_jis_kc   = find(shift_embeded_basic_kc);
+    switch(kc) {
+        case KC_GRV: return NOT_HANDLED;
+        default:
+        if (record->event.pressed) {
+            uint8_t  mod_state                    = get_mods();
+            bool     shift_state_or_shift_embeded = (mod_state | mods_kc) & MOD_MASK_SHIFT;
+            uint16_t shift_embeded_basic_kc       = shift_state_or_shift_embeded ? S((uint16_t)basic_kc) : basic_kc;
+            uint16_t shift_embeded_basic_jis_kc   = find(shift_embeded_basic_kc);
 
-        if (!shift_embeded_basic_jis_kc) return NOT_HANDLED;
+            if (!shift_embeded_basic_jis_kc) return NOT_HANDLED;
 
-        if (pushing_shift_embeded_basic_kc != PUSH_NONE) {
-            uint16_t pushing_basic_kc = QK_MODS_GET_BASIC_KEYCODE(pushing_shift_embeded_basic_kc);
-            unregister_code16(pushing_basic_kc);
+            if (pushing_shift_embeded_basic_kc != PUSH_NONE) {
+                uint16_t pushing_basic_kc = QK_MODS_GET_BASIC_KEYCODE(pushing_shift_embeded_basic_kc);
+                unregister_code16(pushing_basic_kc);
+            }
+
+            if (mod_state & MOD_MASK_SHIFT) {
+                if (kc == KC_TILD) {
+                    del_mods(MOD_MASK_SHIFT);
+                    register_code16(S(KC_LCBR));
+                    set_mods(mod_state);
+                } else {
+                    del_mods(MOD_MASK_SHIFT);
+                    register_code16(shift_embeded_basic_jis_kc);
+                    set_mods(mod_state);
+                }
+            } else {
+                register_code16(shift_embeded_basic_jis_kc);
+            }
+            pushing_shift_embeded_basic_kc = shift_embeded_basic_kc;
+            return HANDLED;
         }
-
-        if (mod_state & MOD_MASK_SHIFT) {
-            del_mods(MOD_MASK_SHIFT);
-            register_code16(shift_embeded_basic_jis_kc);
-            set_mods(mod_state);
-        } else {
-            register_code16(shift_embeded_basic_jis_kc);
-        }
-        pushing_shift_embeded_basic_kc = shift_embeded_basic_kc;
-        return HANDLED;
     }
 
     // if keycode is the same as previous one without mods.

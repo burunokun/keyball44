@@ -30,6 +30,8 @@ enum _layers {
 #define M_RGUI OSM(MOD_RGUI)
 #define M_RSFT OSM(MOD_RSFT)
 
+key_override_t grave_jis_mode(void);
+
 // Custom key for scrolling and JIS mode
 enum custom_keycodes {
     KC_SCR = SAFE_RANGE,
@@ -130,7 +132,7 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 
 // auto mouse activation threshold to prevent misfire
 bool auto_mouse_activation(report_mouse_t mouse_report) {
-    int16_t activation_threshold = 3;
+    int16_t activation_threshold = 2;
     if (mouse_report.x < -activation_threshold || mouse_report.x > activation_threshold ||
         mouse_report.y < -activation_threshold || mouse_report.y > activation_threshold) {
         return true;
@@ -180,13 +182,15 @@ const key_override_t vmut = ko_make_basic(MOD_MASK_ALT,   KC_VOLU, KC_MUTE);
 const key_override_t vldn = ko_make_basic(MOD_MASK_SHIFT, KC_VOLU, KC_VOLD);
 const key_override_t brdn = ko_make_basic(MOD_MASK_SHIFT, KC_BRIU, KC_BRID);
 
+const key_override_t tgrv = ko_make_basic(MOD_MASK_SHIFT, KC_TILD, KC_GRV);
+
 // Make Tab Switching more intuitive
 const key_override_t pgup = ko_make_basic(MOD_MASK_CTRL,  KC_PGDN, C(KC_PGUP));
 const key_override_t pgdn = ko_make_basic(MOD_MASK_CTRL,  KC_PGUP, C(KC_PGDN));
 
 const key_override_t **key_overrides = (const key_override_t *[]) {
     &brdn, &vldn, &vmut,
-    &pgup, &pgdn,
+    &pgup, &pgdn, &tgrv,
     NULL
 };
 
