@@ -43,8 +43,8 @@ const uint16_t swap_map[][2] = {
     // clang-format off
     // BEFORE  AFTER
     { KC_TILD, S(KC_LCBR) },
-    { KC_1, KC_EXLM       }, // !
-    { KC_2, KC_LBRC       }, // @
+    { KC_1, S(KC_INT3)    }, // !
+    { KC_2, S(KC_6)       }, // @
     { KC_3, S(KC_RBRC)    }, // {
     { KC_4, S(KC_8)       }, // (
     { KC_5, KC_RBRC       }, // [
