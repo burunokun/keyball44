@@ -57,7 +57,6 @@ int16_t my_abs(int16_t num);
 #endif // MODS_H
 
 #ifdef MODS_IMPLEMENTATION
-#define MODS_IMPLEMENTATION
 
 // Auto mouse
 void pointing_device_init_user(void) {
