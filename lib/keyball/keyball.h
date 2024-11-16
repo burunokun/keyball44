@@ -93,9 +93,9 @@ enum keyball_keycodes {
 typedef union {
     uint32_t raw;
     struct {
-        uint8_t cpi : 7;
-        uint8_t sdiv : 3; // scroll divider
-        bool is_jis_mode: 1;
+        uint8_t cpi:      7;
+        uint8_t sdiv:     3; // scroll divider
+        bool is_jis_mode: 1; // for japanese layout
     };
 } keyball_config_t;
 

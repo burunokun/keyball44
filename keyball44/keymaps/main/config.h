@@ -34,20 +34,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define TAP_CODE_DELAY 5
 
-#define TAPPING_TERM 150
+#define TAPPING_TERM 200
+#define HOLD_ON_OTHER_KEY_PRESS
 
-#define ONESHOT_TIMEOUT 350
-
-#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
-#define CAPS_WORD_IDLE_TIMEOUT 1000
+#define ONESHOT_TIMEOUT 500
 
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 #define AUTO_MOUSE_TIME 500
 
-#define DUMMY_MOD_NEUTRALIZER_KEYCODE KC_F18
-#define MODS_TO_NEUTRALIZE {       \
-            MOD_BIT(KC_LEFT_ALT),  \
-            MOD_BIT(KC_RIGHT_ALT), \
-            MOD_BIT(KC_LEFT_GUI),  \
-            MOD_BIT(KC_RIGHT_GUI)  \
+#define DUMMY_MOD_NEUTRALIZER_KEYCODE KC_F24
+#define MODS_TO_NEUTRALIZE {         \
+            MOD_BIT(KC_LEFT_ALT)   , \
+            MOD_BIT(KC_RIGHT_ALT)  , \
+            MOD_BIT(KC_LEFT_GUI)   , \
+            MOD_BIT(KC_RIGHT_GUI)  , \
         }

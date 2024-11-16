@@ -27,7 +27,6 @@ const uint8_t CPI_DEFAULT    = KEYBALL_CPI_DEFAULT / 100;
 const uint8_t CPI_MAX        = pmw3360_MAXCPI + 1;
 const uint8_t SCROLL_DIV_MAX = 7;
 
-
 keyball_config_t keyball_config;
 
 keyball_t keyball = {
@@ -35,14 +34,14 @@ keyball_t keyball = {
     .that_enable    = false,
     .that_have_ball = false,
 
-    .this_motion = {0},
-    .that_motion = {0},
+    .this_motion    = {0},
+    .that_motion    = {0},
 
-    .cpi_value   = 0,
-    .cpi_changed = false,
+    .cpi_value      = 0,
+    .cpi_changed    = false,
 
-    .scroll_mode = false,
-    .scroll_div  = 0,
+    .scroll_mode    = false,
+    .scroll_div     = 0,
 };
 
 //////////////////////////////////////////////////////////////////////////////
@@ -583,5 +582,5 @@ bool is_jis_mode(void) {
 
 void set_jis_mode(bool is_jis_mode) {
     keyball_config.is_jis_mode = is_jis_mode;
-    eeconfig_update_user(keyball_config.raw);
+    eeconfig_update_kb(keyball_config.raw);
 }

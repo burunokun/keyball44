@@ -11,26 +11,27 @@
 // Define names for layers
 enum _layers {
     _QWERTY = 0,
-    _SYMBOLS,
-    _FUNCS,
-    _MOUSE,
+    _SYM,
+    _FUN,
+    _MOV,
 };
 
 // Define names for layer/mod keys
-#define L_SYMB OSL(_SYMBOLS)
-#define L_FUNC OSL(_FUNCS)
+#define L_SYM OSL(_SYM)
+#define L_FUN OSL(_FUN)
 
-#define M_LALT OSM(MOD_LALT)
-#define M_LCTL OSM(MOD_LCTL)
-#define M_LGUI OSM(MOD_LGUI)
-#define M_LSFT OSM(MOD_LSFT)
+#define OM_LALT OSM(MOD_LALT)
+#define OM_LGUI OSM(MOD_LGUI)
 
-#define M_RALT OSM(MOD_RALT)
-#define M_RCTL OSM(MOD_RCTL)
-#define M_RGUI OSM(MOD_RGUI)
-#define M_RSFT OSM(MOD_RSFT)
+#define OM_LCTL OSM(MOD_LCTL)
 
-key_override_t grave_jis_mode(void);
+#define OM_LSFT OSM(MOD_LSFT)
+#define OM_RSFT OSM(MOD_RSFT)
+
+#define RC_SCLN RCTL_T(KC_SCLN)
+
+#define MS_BTN1 KC_MS_BTN1
+#define MS_BTN2 KC_MS_BTN2
 
 // Custom key for scrolling and JIS mode
 enum custom_keycodes {
@@ -46,12 +47,6 @@ enum click_state {
 
 enum click_state state;
 
-typedef struct {
-    uint16_t tap;
-    uint16_t hold;
-    uint16_t held;
-} tap_dance_tap_hold_t;
-
 const uint16_t ignore_disable_mouse_layer_keys[] = {
     KC_LGUI,
     KC_LCTL,
@@ -66,7 +61,7 @@ int16_t scroll_v_threshold = 50;
 int16_t scroll_h_threshold = 50;
 
 void pointing_device_init_user(void) {
-    set_auto_mouse_layer(_MOUSE);
+    set_auto_mouse_layer(_MOV);
     set_auto_mouse_enable(true);
 };
 
@@ -75,7 +70,6 @@ int16_t my_abs(int16_t num) {
 }
 
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-
     int16_t current_x = mouse_report.x;
     int16_t current_y = mouse_report.y;
     int16_t current_h = 0;
@@ -130,19 +124,7 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     return mouse_report;
 }
 
-// auto mouse activation threshold to prevent misfire
-bool auto_mouse_activation(report_mouse_t mouse_report) {
-    int16_t activation_threshold = 2;
-    if (mouse_report.x < -activation_threshold || mouse_report.x > activation_threshold ||
-        mouse_report.y < -activation_threshold || mouse_report.y > activation_threshold) {
-        return true;
-    }
-
-    return false;
-}
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-
     switch (keycode) {
         case KC_SCR: {
              if (record->event.pressed) {
@@ -151,13 +133,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                  state = NONE;
              }
          } return false;
-
         case KC_JIS: {
             if (record->event.pressed) {
                 set_jis_mode(!is_jis_mode());
             }
         } return false;
-
         default: {
             size_t len = sizeof(ignore_disable_mouse_layer_keys) / sizeof(ignore_disable_mouse_layer_keys[0]);
             for (size_t i = 0; i < len; ++i) {
@@ -169,50 +149,58 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } break;
     }
 
-    if (!is_jis_mode()) {
-        return true;
+    if (is_jis_mode()) {
+        // if in JIS mode then convert keys to its JIS equivalent
+        return process_record_user_a2j(keycode, record);
     }
-
-    // if in JIS mode then convert keys to its JIS equivalent
-    return process_record_user_a2j(keycode, record);
+    return true;
 }
 
-// Extra keys
+// Media keys
 const key_override_t vmut = ko_make_basic(MOD_MASK_ALT,   KC_VOLU, KC_MUTE);
 const key_override_t vldn = ko_make_basic(MOD_MASK_SHIFT, KC_VOLU, KC_VOLD);
 const key_override_t brdn = ko_make_basic(MOD_MASK_SHIFT, KC_BRIU, KC_BRID);
 
-const key_override_t tgrv = ko_make_basic(MOD_MASK_SHIFT, KC_TILD, KC_GRV);
+// Number Keys
+const key_override_t shk3 = ko_make_basic(MOD_MASK_SHIFT, KC_3, KC_LCBR);
+const key_override_t shk4 = ko_make_basic(MOD_MASK_SHIFT, KC_4, KC_LPRN);
+const key_override_t shk5 = ko_make_basic(MOD_MASK_SHIFT, KC_5, KC_LBRC);
+const key_override_t shk6 = ko_make_basic(MOD_MASK_SHIFT, KC_6, KC_RBRC);
+const key_override_t shk7 = ko_make_basic(MOD_MASK_SHIFT, KC_7, KC_RPRN);
+const key_override_t shk8 = ko_make_basic(MOD_MASK_SHIFT, KC_8, KC_RCBR);
+const key_override_t shk9 = ko_make_basic(MOD_MASK_SHIFT, KC_9, KC_CIRC);
+const key_override_t shk0 = ko_make_basic(MOD_MASK_SHIFT, KC_0, KC_DLR);
 
-// Make Tab Switching more intuitive
-const key_override_t pgup = ko_make_basic(MOD_MASK_CTRL,  KC_PGDN, C(KC_PGUP));
-const key_override_t pgdn = ko_make_basic(MOD_MASK_CTRL,  KC_PGUP, C(KC_PGDN));
+// Grave key
+const key_override_t tgrv = ko_make_basic(MOD_MASK_SHIFT, KC_TILD, KC_GRV);
+const key_override_t cgrv = ko_make_basic(MOD_BIT(KC_RCTL), KC_ESC, KC_GRV);
+
+// Fn Keys
+const key_override_t nfn1  = ko_make_basic(MOD_BIT(KC_RCTL), KC_1, KC_F1 );
+const key_override_t nfn2  = ko_make_basic(MOD_BIT(KC_RCTL), KC_2, KC_F2 );
+const key_override_t nfn3  = ko_make_basic(MOD_BIT(KC_RCTL), KC_3, KC_F3 );
+const key_override_t nfn4  = ko_make_basic(MOD_BIT(KC_RCTL), KC_4, KC_F4 );
+const key_override_t nfn5  = ko_make_basic(MOD_BIT(KC_RCTL), KC_5, KC_F5 );
+const key_override_t nfn6  = ko_make_basic(MOD_BIT(KC_RCTL), KC_6, KC_F6 );
+const key_override_t nfn7  = ko_make_basic(MOD_BIT(KC_RCTL), KC_7, KC_F7 );
+const key_override_t nfn8  = ko_make_basic(MOD_BIT(KC_RCTL), KC_8, KC_F8 );
+const key_override_t nfn9  = ko_make_basic(MOD_BIT(KC_RCTL), KC_9, KC_F9 );
+const key_override_t nfn10 = ko_make_basic(MOD_BIT(KC_RCTL), KC_0, KC_F10);
+const key_override_t nfn11 = ko_make_basic(MOD_BIT(KC_RCTL), KC_END, KC_F11);
+
+// Home, End, PageUp, PageDown Keys
+const key_override_t home = ko_make_basic(MOD_BIT(KC_RCTL), KC_LEFT, KC_HOME);
+const key_override_t end  = ko_make_basic(MOD_BIT(KC_RCTL), KC_RGHT, KC_END );
+const key_override_t pgup = ko_make_basic(MOD_BIT(KC_RCTL), KC_UP  , KC_PGUP);
+const key_override_t pgdn = ko_make_basic(MOD_BIT(KC_RCTL), KC_DOWN, KC_PGDN);
 
 const key_override_t **key_overrides = (const key_override_t *[]) {
     &brdn, &vldn, &vmut,
-    &pgup, &pgdn, &tgrv,
+    &shk3, &shk4, &shk5, &shk6, &shk7, &shk8, &shk9, &shk0,
+    &nfn1, &nfn2, &nfn3, &nfn4, &nfn5, &nfn6, &nfn7, &nfn8, &nfn9, &nfn10, &nfn11,
+    &tgrv, &cgrv,
+    &home, &end, &pgup, &pgdn,
     NULL
 };
-
-bool caps_word_press_user(uint16_t keycode) {
-    switch (keycode) {
-        // Keycodes that continue Caps Word, with shift applied.
-        case KC_A ... KC_Z:
-        case KC_SPC:
-        case KC_MINS:
-            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
-            return true;
-
-        // Keycodes that continue Caps Word, without shifting.
-        case KC_1 ... KC_0:
-        case KC_BSPC:
-        case KC_DEL:
-        case KC_UNDS:
-            return true;
-
-        default:
-            return false;  // Deactivate Caps Word.
-    }
-}
 
 #endif // MODS_H
