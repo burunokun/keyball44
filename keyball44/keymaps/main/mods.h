@@ -22,11 +22,12 @@ enum _layers {
 #define OM_LALT OSM(MOD_LALT)
 #define OM_LGUI OSM(MOD_LGUI)
 #define OM_LCTL OSM(MOD_LCTL)
+// #define OM_RCTL OSM(MOD_RCTL)
 #define OM_LSFT OSM(MOD_LSFT)
 #define OM_RSFT OSM(MOD_RSFT)
-#define RC_SCLN RCTL_T(KC_SCLN)
 #define MS_BTN1 KC_MS_BTN1
 #define MS_BTN2 KC_MS_BTN2
+#define RC_SCLN RCTL_T(KC_SCLN)
 
 // Custom key for scrolling and JIS mode
 enum custom_keycodes {
@@ -66,6 +67,17 @@ void pointing_device_init_user(void) {
 
 int16_t my_abs(int16_t num) {
     return num < 0 ? -num : num;
+}
+
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case RC_SCLN:
+            // Immediately select the hold action when another key is pressed.
+            return false;
+        default:
+            // Do not select the hold action when another key is pressed.
+            return true;
+    }
 }
 
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
@@ -176,6 +188,10 @@ const key_override_t kc0 = ko_make_basic(MOD_MASK_SHIFT, KC_0, KC_DLR);
 const key_override_t grv1 = ko_make_basic(MOD_MASK_SHIFT, KC_TILD, KC_GRV);
 const key_override_t grv2 = ko_make_basic(MOD_BIT(KC_RCTL), KC_ESC, KC_GRV);
 
+// Page Up and Page Down
+const key_override_t pgup = ko_make_basic(MOD_MASK_CTRL, KC_PGUP, C(KC_PGDN));
+const key_override_t pgdn = ko_make_basic(MOD_MASK_CTRL, KC_PGDN, C(KC_PGUP));
+
 // Fn Keys
 const key_override_t fn1  = ko_make_basic(MOD_BIT(KC_RCTL), KC_1, KC_F1 );
 const key_override_t fn2  = ko_make_basic(MOD_BIT(KC_RCTL), KC_2, KC_F2 );
@@ -188,18 +204,11 @@ const key_override_t fn8  = ko_make_basic(MOD_BIT(KC_RCTL), KC_8, KC_F8 );
 const key_override_t fn9  = ko_make_basic(MOD_BIT(KC_RCTL), KC_9, KC_F9 );
 const key_override_t fn0  = ko_make_basic(MOD_BIT(KC_RCTL), KC_0, KC_F11);
 
-// Home, End, PageUp, PageDown Keys
-const key_override_t home = ko_make_basic(MOD_BIT(KC_RCTL), KC_LEFT, KC_HOME);
-const key_override_t end  = ko_make_basic(MOD_BIT(KC_RCTL), KC_RGHT, KC_END );
-const key_override_t pgup = ko_make_basic(MOD_BIT(KC_RCTL), KC_UP  , KC_PGUP);
-const key_override_t pgdn = ko_make_basic(MOD_BIT(KC_RCTL), KC_DOWN, KC_PGDN);
-
 const key_override_t **key_overrides = (const key_override_t *[]) {
     &brdn, &vldn, &vmut,
     &kc1, &kc2, &kc3, &kc4, &kc5, &kc6, &kc7, &kc8, &kc9, &kc0,
     &fn1, &fn2, &fn3, &fn4, &fn5, &fn6, &fn7, &fn8, &fn9, &fn0,
-    &grv1, &grv2,
-    &home, &end, &pgup, &pgdn,
+    &grv1, &grv2, &pgup, &pgdn,
     NULL
 };
 
