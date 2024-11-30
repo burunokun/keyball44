@@ -43,21 +43,20 @@ const uint16_t swap_map[][2] = {
     // clang-format off
     // BEFORE  AFTER
     { KC_TILD, S(KC_LCBR) },
-    { KC_1, S(KC_6)       }, // &
-    { KC_2, KC_RBRC       }, // [
+    { KC_1, KC_LBRC       }, // @
+    { KC_2, S(KC_6)       }, // &
     { KC_3, S(KC_RBRC)    }, // {
     { KC_4, S(KC_8)       }, // (
-    // { KC_5, KC_RBRC       }, // %
-    { KC_6, KC_EQL        }, // ^
+    { KC_5, KC_RBRC       }, // [
+    { KC_6, KC_NUHS       }, // ]
     { KC_7, KC_LPRN       }, // )
     { KC_8, S(KC_NUHS)    }, // }
-    { KC_9, KC_NUHS       }, // ]
+    { KC_9, KC_EQL        }, // ^
     { KC_0, KC_DLR        }, // $
     // clang-format on
 };
 
 const size_t rows = sizeof(translate_map) / sizeof(translate_map[0]);
-
 uint16_t find(uint16_t kc) {
     for (size_t index = 0; index < rows; index++) {
         if (translate_map[index][0] == kc) return translate_map[index][1];
@@ -66,7 +65,6 @@ uint16_t find(uint16_t kc) {
 }
 
 const size_t swap_rows = sizeof(swap_map) / sizeof(swap_map[0]);
-
 uint16_t find_swap(uint16_t kc) {
     for (size_t index = 0; index < swap_rows; index++) {
         if (swap_map[index][0] == kc) return swap_map[index][1];
@@ -89,6 +87,7 @@ bool process_record_user_a2j(uint16_t kc, keyrecord_t *record) {
     uint8_t basic_kc = QK_MODS_GET_BASIC_KEYCODE(kc);
 
     if (record->event.pressed) {
+        // uint8_t  mod_state                    = (get_oneshot_mods() | get_mods());
         uint8_t  mod_state                    = get_mods();
         bool     shift_state_or_shift_embeded = (mod_state | mods_kc) & MOD_MASK_SHIFT;
         uint16_t shift_embeded_basic_kc       = shift_state_or_shift_embeded ? S((uint16_t)basic_kc) : basic_kc;

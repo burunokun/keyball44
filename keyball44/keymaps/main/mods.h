@@ -19,15 +19,30 @@ enum _layers {
 // Names for layer/mod keys
 #define L_SYM OSL(_SYM)
 #define L_FUN OSL(_FUN)
+
+// Left and Right ALT
 #define OM_LALT OSM(MOD_LALT)
+#define OM_RALT OSM(MOD_RALT)
+
+// Left and Right GUI
 #define OM_LGUI OSM(MOD_LGUI)
+#define OM_RGUI OSM(MOD_RGUI)
+
+// Left and Right CONTROl
 #define OM_LCTL OSM(MOD_LCTL)
-// #define OM_RCTL OSM(MOD_RCTL)
+#define OM_RCTL OSM(MOD_RCTL)
+
+// Left and Right SHIFT
 #define OM_LSFT OSM(MOD_LSFT)
 #define OM_RSFT OSM(MOD_RSFT)
+
+// Mouse Buttons
 #define MS_BTN1 KC_MS_BTN1
 #define MS_BTN2 KC_MS_BTN2
-#define RC_SCLN RCTL_T(KC_SCLN)
+
+// Right ALT and Right CONTROL
+#define RC_SCLN RALT_T(KC_SCLN)
+// #define RC_SLSH RCTL_T(KC_SLSH)
 
 // Custom key for scrolling and JIS mode
 enum custom_keycodes {
@@ -71,11 +86,12 @@ int16_t my_abs(int16_t num) {
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        // case RC_SLSH:
         case RC_SCLN:
-            // Immediately select the hold action when another key is pressed.
+            // Do not select the hold action when another key is pressed.
             return false;
         default:
-            // Do not select the hold action when another key is pressed.
+            // Immediately select the hold action when another key is pressed.
             return true;
     }
 }
@@ -173,7 +189,7 @@ const key_override_t vldn = ko_make_basic(MOD_MASK_SHIFT, KC_VOLU, KC_VOLD);
 const key_override_t brdn = ko_make_basic(MOD_MASK_SHIFT, KC_BRIU, KC_BRID);
 
 // Number Keys
-const key_override_t kc1 = ko_make_basic(MOD_MASK_SHIFT, KC_1, KC_PIPE);
+const key_override_t kc1 = ko_make_basic(MOD_MASK_SHIFT, KC_1, KC_AT);
 const key_override_t kc2 = ko_make_basic(MOD_MASK_SHIFT, KC_2, KC_AMPR);
 const key_override_t kc3 = ko_make_basic(MOD_MASK_SHIFT, KC_3, KC_LCBR);
 const key_override_t kc4 = ko_make_basic(MOD_MASK_SHIFT, KC_4, KC_LPRN);
@@ -184,31 +200,20 @@ const key_override_t kc8 = ko_make_basic(MOD_MASK_SHIFT, KC_8, KC_RCBR);
 const key_override_t kc9 = ko_make_basic(MOD_MASK_SHIFT, KC_9, KC_CIRC);
 const key_override_t kc0 = ko_make_basic(MOD_MASK_SHIFT, KC_0, KC_DLR);
 
+// Home, End, Page Up and Page Down Keys
+const key_override_t pup = ko_make_basic(MOD_BIT(KC_RSFT), KC_UP, KC_PGUP);
+const key_override_t pdn = ko_make_basic(MOD_BIT(KC_RSFT), KC_DOWN, KC_PGDN);
+const key_override_t hom = ko_make_basic(MOD_BIT(KC_RSFT), KC_LEFT, KC_HOME);
+const key_override_t end = ko_make_basic(MOD_BIT(KC_RSFT), KC_RGHT, KC_END);
+
 // Grave key
-const key_override_t grv1 = ko_make_basic(MOD_MASK_SHIFT, KC_TILD, KC_GRV);
-const key_override_t grv2 = ko_make_basic(MOD_BIT(KC_RCTL), KC_ESC, KC_GRV);
-
-// Page Up and Page Down
-const key_override_t pgup = ko_make_basic(MOD_MASK_CTRL, KC_PGUP, C(KC_PGDN));
-const key_override_t pgdn = ko_make_basic(MOD_MASK_CTRL, KC_PGDN, C(KC_PGUP));
-
-// Fn Keys
-const key_override_t fn1  = ko_make_basic(MOD_BIT(KC_RCTL), KC_1, KC_F1 );
-const key_override_t fn2  = ko_make_basic(MOD_BIT(KC_RCTL), KC_2, KC_F2 );
-const key_override_t fn3  = ko_make_basic(MOD_BIT(KC_RCTL), KC_3, KC_F3 );
-const key_override_t fn4  = ko_make_basic(MOD_BIT(KC_RCTL), KC_4, KC_F4 );
-const key_override_t fn5  = ko_make_basic(MOD_BIT(KC_RCTL), KC_5, KC_F5 );
-const key_override_t fn6  = ko_make_basic(MOD_BIT(KC_RCTL), KC_6, KC_F6 );
-const key_override_t fn7  = ko_make_basic(MOD_BIT(KC_RCTL), KC_7, KC_F7 );
-const key_override_t fn8  = ko_make_basic(MOD_BIT(KC_RCTL), KC_8, KC_F8 );
-const key_override_t fn9  = ko_make_basic(MOD_BIT(KC_RCTL), KC_9, KC_F9 );
-const key_override_t fn0  = ko_make_basic(MOD_BIT(KC_RCTL), KC_0, KC_F11);
+const key_override_t grv = ko_make_basic(MOD_MASK_SHIFT, KC_TILD, KC_GRV);
 
 const key_override_t **key_overrides = (const key_override_t *[]) {
     &brdn, &vldn, &vmut,
     &kc1, &kc2, &kc3, &kc4, &kc5, &kc6, &kc7, &kc8, &kc9, &kc0,
-    &fn1, &fn2, &fn3, &fn4, &fn5, &fn6, &fn7, &fn8, &fn9, &fn0,
-    &grv1, &grv2, &pgup, &pgdn,
+    &pup, &pdn, &hom, &end,
+    &grv,
     NULL
 };
 
