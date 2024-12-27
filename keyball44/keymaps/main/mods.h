@@ -188,32 +188,28 @@ const key_override_t vmut = ko_make_basic(MOD_MASK_ALT,   KC_VOLU, KC_MUTE);
 const key_override_t vldn = ko_make_basic(MOD_MASK_SHIFT, KC_VOLU, KC_VOLD);
 const key_override_t brdn = ko_make_basic(MOD_MASK_SHIFT, KC_BRIU, KC_BRID);
 
-// Number Keys
-const key_override_t kc1 = ko_make_basic(MOD_MASK_SHIFT, KC_1, KC_AT);
-const key_override_t kc2 = ko_make_basic(MOD_MASK_SHIFT, KC_2, KC_AMPR);
-const key_override_t kc3 = ko_make_basic(MOD_MASK_SHIFT, KC_3, KC_LCBR);
-const key_override_t kc4 = ko_make_basic(MOD_MASK_SHIFT, KC_4, KC_LPRN);
-const key_override_t kc5 = ko_make_basic(MOD_MASK_SHIFT, KC_5, KC_LBRC);
-const key_override_t kc6 = ko_make_basic(MOD_MASK_SHIFT, KC_6, KC_RBRC);
-const key_override_t kc7 = ko_make_basic(MOD_MASK_SHIFT, KC_7, KC_RPRN);
-const key_override_t kc8 = ko_make_basic(MOD_MASK_SHIFT, KC_8, KC_RCBR);
-const key_override_t kc9 = ko_make_basic(MOD_MASK_SHIFT, KC_9, KC_CIRC);
+// To oneshot while in jis_mode
+const key_override_t kc1 = ko_make_basic(MOD_MASK_SHIFT, KC_1, KC_EQL);
+const key_override_t kc2 = ko_make_basic(MOD_MASK_SHIFT, KC_2, KC_RBRC);
+const key_override_t kc3 = ko_make_basic(MOD_MASK_SHIFT, KC_3, S(KC_RBRC));
+const key_override_t kc4 = ko_make_basic(MOD_MASK_SHIFT, KC_4, S(KC_8));
+// const key_override_t kc5 = ko_make_basic(MOD_MASK_SHIFT, KC_5, KC_LBRC);
+const key_override_t kc6 = ko_make_basic(MOD_MASK_SHIFT, KC_6, KC_LBRC);
+const key_override_t kc7 = ko_make_basic(MOD_MASK_SHIFT, KC_7, KC_LPRN);
+const key_override_t kc8 = ko_make_basic(MOD_MASK_SHIFT, KC_8, S(KC_NUHS));
+const key_override_t kc9 = ko_make_basic(MOD_MASK_SHIFT, KC_9, KC_NUHS);
 const key_override_t kc0 = ko_make_basic(MOD_MASK_SHIFT, KC_0, KC_DLR);
 
-// Home, End, Page Up and Page Down Keys
-const key_override_t pup = ko_make_basic(MOD_BIT(KC_RSFT), KC_UP, KC_PGUP);
-const key_override_t pdn = ko_make_basic(MOD_BIT(KC_RSFT), KC_DOWN, KC_PGDN);
-const key_override_t hom = ko_make_basic(MOD_BIT(KC_RSFT), KC_LEFT, KC_HOME);
-const key_override_t end = ko_make_basic(MOD_BIT(KC_RSFT), KC_RGHT, KC_END);
+const key_override_t coln = ko_make_basic(MOD_MASK_SHIFT, KC_SCLN, KC_QUOT);
+const key_override_t unds = ko_make_basic(MOD_MASK_SHIFT, KC_MINS, S(KC_INT1));
 
 // Grave key
-const key_override_t grv = ko_make_basic(MOD_MASK_SHIFT, KC_TILD, KC_GRV);
+const key_override_t grv = ko_make_basic(MOD_MASK_SHIFT, KC_TILD, S(KC_LCBR));
 
 const key_override_t **key_overrides = (const key_override_t *[]) {
-    &brdn, &vldn, &vmut,
-    &kc1, &kc2, &kc3, &kc4, &kc5, &kc6, &kc7, &kc8, &kc9, &kc0,
-    &pup, &pdn, &hom, &end,
-    &grv,
+    &brdn, &vldn, &vmut, &grv,
+    &kc1, &kc2, &kc3, &kc4, /*&kc5,*/ &kc6, &kc7, &kc8, &kc9, &kc0,
+    &coln, &unds,
     NULL
 };
 

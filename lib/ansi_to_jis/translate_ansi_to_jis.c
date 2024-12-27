@@ -9,6 +9,8 @@
 #define HANDLED false
 #define NOT_HANDLED true
 
+// ------------------------------------------------------------------------- //
+
 const uint16_t translate_map[][2] = {
     // clang-format off
     // ANSI   JIS
@@ -20,38 +22,40 @@ const uint16_t translate_map[][2] = {
     { KC_CIRC, KC_EQL     },
     { KC_AMPR, S(KC_6)    },
     { KC_ASTR, S(KC_QUOT) },
-    { KC_LPRN, S(KC_8)    },
-    { KC_RPRN, S(KC_9)    },
     { KC_EQL , S(KC_MINS) },
-    { KC_LBRC, KC_RBRC    },
     { KC_BSLS, KC_INT3    },
-    { KC_RBRC, KC_NUHS    },
     { KC_QUOT, S(KC_7)    },
     { KC_GRV , S(KC_LCBR) },
     { KC_PLUS, S(KC_SCLN) },
     { KC_UNDS, S(KC_INT1) },
-    { KC_LCBR, S(KC_RBRC) },
     { KC_PIPE, S(KC_INT3) },
+    { KC_LPRN, S(KC_8)    },
+    { KC_RPRN, S(KC_9)    },
+    { KC_LCBR, S(KC_RBRC) },
     { KC_RCBR, S(KC_NUHS) },
+    { KC_LBRC, KC_RBRC    },
+    { KC_RBRC, KC_NUHS    },
     { KC_COLN, KC_QUOT    },
     { KC_DQUO, S(KC_2)    },
     { KC_TILD, S(KC_EQL)  },
     // clang-format on
 };
 
+// ------------------------------------------------------------------------- //
+
 const uint16_t swap_map[][2] = {
     // clang-format off
     // BEFORE  AFTER
     { KC_TILD, S(KC_LCBR) },
-    { KC_1, KC_LBRC       }, // @
-    { KC_2, S(KC_6)       }, // &
+    { KC_1, KC_EQL        }, // ^
+    { KC_2, KC_RBRC       }, // [
     { KC_3, S(KC_RBRC)    }, // {
     { KC_4, S(KC_8)       }, // (
-    { KC_5, KC_RBRC       }, // [
-    { KC_6, KC_NUHS       }, // ]
+    // { KC_5, KC_LBRC       }, // @
+    { KC_6, KC_LBRC       }, // @
     { KC_7, KC_LPRN       }, // )
     { KC_8, S(KC_NUHS)    }, // }
-    { KC_9, KC_EQL        }, // ^
+    { KC_9, KC_NUHS       }, // ]
     { KC_0, KC_DLR        }, // $
     // clang-format on
 };
@@ -87,7 +91,7 @@ bool process_record_user_a2j(uint16_t kc, keyrecord_t *record) {
     uint8_t basic_kc = QK_MODS_GET_BASIC_KEYCODE(kc);
 
     if (record->event.pressed) {
-        // uint8_t  mod_state                    = (get_oneshot_mods() | get_mods());
+        // uint8_t  mod_state                    = (get_oneshot_mods() & get_mods());
         uint8_t  mod_state                    = get_mods();
         bool     shift_state_or_shift_embeded = (mod_state | mods_kc) & MOD_MASK_SHIFT;
         uint16_t shift_embeded_basic_kc       = shift_state_or_shift_embeded ? S((uint16_t)basic_kc) : basic_kc;
