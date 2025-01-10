@@ -14,11 +14,19 @@ enum _layers {
     _SYM,
     _FUN,
     _MOV,
+    // _GAM1,
+    // _GAM2,
+    // _GAM3,
 };
 
-// Names for layer/mod keys
+// Names for Layer/Mod Keys
 #define L_SYM OSL(_SYM)
 #define L_FUN OSL(_FUN)
+
+// Gaming Layer
+// #define L_GAM1 DF(_GAM1)
+// #define L_GAM2 OSL(_GAM2)
+// #define L_GAM3 OSL(_GAM3)
 
 // Left and Right ALT
 #define OM_LALT OSM(MOD_LALT)
@@ -189,27 +197,27 @@ const key_override_t vldn = ko_make_basic(MOD_MASK_SHIFT, KC_VOLU, KC_VOLD);
 const key_override_t brdn = ko_make_basic(MOD_MASK_SHIFT, KC_BRIU, KC_BRID);
 
 // To oneshot while in jis_mode
-const key_override_t kc1 = ko_make_basic(MOD_MASK_SHIFT, KC_1, KC_EQL);
-const key_override_t kc2 = ko_make_basic(MOD_MASK_SHIFT, KC_2, KC_RBRC);
+const key_override_t kc1 = ko_make_basic(MOD_MASK_SHIFT, KC_1, KC_DOT);
+const key_override_t kc2 = ko_make_basic(MOD_MASK_SHIFT, KC_2, S(KC_5));
 const key_override_t kc3 = ko_make_basic(MOD_MASK_SHIFT, KC_3, S(KC_RBRC));
 const key_override_t kc4 = ko_make_basic(MOD_MASK_SHIFT, KC_4, S(KC_8));
-// const key_override_t kc5 = ko_make_basic(MOD_MASK_SHIFT, KC_5, KC_LBRC);
-const key_override_t kc6 = ko_make_basic(MOD_MASK_SHIFT, KC_6, KC_LBRC);
+const key_override_t kc5 = ko_make_basic(MOD_MASK_SHIFT, KC_5, KC_RBRC);
+const key_override_t kc6 = ko_make_basic(MOD_MASK_SHIFT, KC_6, KC_NUHS);
 const key_override_t kc7 = ko_make_basic(MOD_MASK_SHIFT, KC_7, KC_LPRN);
 const key_override_t kc8 = ko_make_basic(MOD_MASK_SHIFT, KC_8, S(KC_NUHS));
-const key_override_t kc9 = ko_make_basic(MOD_MASK_SHIFT, KC_9, KC_NUHS);
-const key_override_t kc0 = ko_make_basic(MOD_MASK_SHIFT, KC_0, KC_DLR);
+const key_override_t kc9 = ko_make_basic(MOD_MASK_SHIFT, KC_9, S(KC_6));
+const key_override_t kc0 = ko_make_basic(MOD_MASK_SHIFT, KC_0, KC_COMM);
 
 const key_override_t coln = ko_make_basic(MOD_MASK_SHIFT, KC_SCLN, KC_QUOT);
-const key_override_t unds = ko_make_basic(MOD_MASK_SHIFT, KC_MINS, S(KC_INT1));
+const key_override_t dot = ko_make_basic(MOD_MASK_SHIFT, KC_MINS, S(KC_INT1));
 
 // Grave key
-const key_override_t grv = ko_make_basic(MOD_MASK_SHIFT, KC_TILD, S(KC_LCBR));
+// const key_override_t grv = ko_make_basic(MOD_MASK_SHIFT, KC_TILD, S(KC_LCBR));
 
 const key_override_t **key_overrides = (const key_override_t *[]) {
-    &brdn, &vldn, &vmut, &grv,
-    &kc1, &kc2, &kc3, &kc4, /*&kc5,*/ &kc6, &kc7, &kc8, &kc9, &kc0,
-    &coln, &unds,
+    &brdn, &vldn, &vmut, // &grv,
+    &kc1, &kc2, &kc3, &kc4, &kc5, &kc6, &kc7, &kc8, &kc9, &kc0,
+    &coln, &dot,
     NULL
 };
 

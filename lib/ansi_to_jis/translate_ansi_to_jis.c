@@ -14,30 +14,30 @@
 const uint16_t translate_map[][2] = {
     // clang-format off
     // ANSI   JIS
+    { KC_TILD, S(KC_EQL)  },
     { KC_EXLM, S(KC_1)    },
-    { KC_AT  , KC_LBRC    },
+    { KC_DQUO, S(KC_2)    },
     { KC_HASH, S(KC_3)    },
     { KC_DLR , S(KC_4)    },
-    { KC_PERC, S(KC_5)    },
-    { KC_CIRC, KC_EQL     },
     { KC_AMPR, S(KC_6)    },
-    { KC_ASTR, S(KC_QUOT) },
-    { KC_EQL , S(KC_MINS) },
-    { KC_BSLS, KC_INT3    },
+    { KC_PERC, S(KC_5)    },
     { KC_QUOT, S(KC_7)    },
-    { KC_GRV , S(KC_LCBR) },
-    { KC_PLUS, S(KC_SCLN) },
-    { KC_UNDS, S(KC_INT1) },
-    { KC_PIPE, S(KC_INT3) },
     { KC_LPRN, S(KC_8)    },
     { KC_RPRN, S(KC_9)    },
+    { KC_AT  , KC_LBRC    },
+    { KC_CIRC, KC_EQL     },
+    { KC_ASTR, S(KC_QUOT) },
+    { KC_EQL , S(KC_MINS) },
+    // { KC_GRV , S(KC_LCBR) },
+    { KC_PLUS, S(KC_SCLN) },
     { KC_LCBR, S(KC_RBRC) },
     { KC_RCBR, S(KC_NUHS) },
     { KC_LBRC, KC_RBRC    },
     { KC_RBRC, KC_NUHS    },
     { KC_COLN, KC_QUOT    },
-    { KC_DQUO, S(KC_2)    },
-    { KC_TILD, S(KC_EQL)  },
+    { KC_UNDS, S(KC_INT1) },
+    { KC_BSLS, KC_INT3    },
+    { KC_PIPE, S(KC_INT3) },
     // clang-format on
 };
 
@@ -46,17 +46,20 @@ const uint16_t translate_map[][2] = {
 const uint16_t swap_map[][2] = {
     // clang-format off
     // BEFORE  AFTER
-    { KC_TILD, S(KC_LCBR) },
-    { KC_1, KC_EQL        }, // ^
-    { KC_2, KC_RBRC       }, // [
+    // { KC_TILD, S(KC_LCBR) },
+    { KC_AT, S(KC_LCBR)   }, // `
+    { KC_MINS, S(KC_INT1) }, // _
+    { KC_CIRC, S(KC_EQL)  }, // ~
+    { KC_1, KC_DOT        }, // .
+    { KC_2, S(KC_5)       }, // %
     { KC_3, S(KC_RBRC)    }, // {
     { KC_4, S(KC_8)       }, // (
-    // { KC_5, KC_LBRC       }, // @
-    { KC_6, KC_LBRC       }, // @
+    { KC_5, KC_RBRC       }, // [
+    { KC_6, KC_NUHS       }, // ]
     { KC_7, KC_LPRN       }, // )
     { KC_8, S(KC_NUHS)    }, // }
-    { KC_9, KC_NUHS       }, // ]
-    { KC_0, KC_DLR        }, // $
+    { KC_9, S(KC_6)       }, // &
+    { KC_0, KC_COMM       }, // ,
     // clang-format on
 };
 

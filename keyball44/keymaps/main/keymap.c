@@ -26,23 +26,23 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT_universal(
-    KC_TAB   , KC_Q    , KC_W      , KC_E     , KC_R     , KC_T     ,  KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_BSPC  ,
-    OM_LALT  , KC_A    , KC_S      , KC_D     , KC_F     , KC_G     ,  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_ENT   ,
-    OM_LSFT  , KC_Z    , KC_X      , KC_C     , KC_V     , KC_B     ,  KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , OM_RSFT  ,
-            G(KC_LCTL) , KC_ESC    , OM_LGUI  , KC_SPC   , OM_LCTL  ,  L_FUN    , L_SYM    , _______  , _______  , KC_DEL
+    KC_TAB   , KC_Q     , KC_W      , KC_E    , KC_R     , KC_T     ,  KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_BSPC  ,
+    OM_LALT  , KC_A     , KC_S      , KC_D    , KC_F     , KC_G     ,  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_ENT   ,
+    OM_LSFT  , KC_Z     , KC_X      , KC_C    , KC_V     , KC_B     ,  KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , OM_RSFT  ,
+   /*L_GAM1*/ _______   , OM_LGUI   , KC_ESC  , KC_SPC   , OM_LCTL  ,  L_FUN    , L_SYM    , _______  , _______  , KC_DEL
    ),
 
   [_SYM] = LAYOUT_universal(
     _______  , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,  KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , _______  ,
-    _______  , KC_TILD  , KC_UNDS  , KC_HASH  , KC_QUOT  , KC_EQL   ,  KC_LEFT  , KC_DOWN  , KC_UP    , KC_RGHT  , _______  , _______  ,
-    _______  , KC_BSLS  , KC_AMPR  , KC_ASTR  , KC_MINS  , KC_EXLM  ,  KC_HOME  , KC_PGDN  , KC_PGUP  , KC_END   , _______  , _______  ,
+    _______  , KC_CIRC  , KC_MINS  , KC_ASTR  , KC_QUOT  , KC_EQL   ,  KC_LEFT  , KC_DOWN  , KC_UP    , KC_RGHT  , _______  , _______  ,
+    _______  , KC_DLR   , KC_EXLM  , KC_HASH  , KC_BSLS  , KC_AT    ,  KC_HOME  , KC_PGDN  , KC_PGUP  , KC_END   , _______  , _______  ,
                _______  , _______  , _______  , _______  , _______  ,  KC_ESC   , KC_SPC   , _______  , _______  , _______
   ),
 
   [_FUN] = LAYOUT_universal(
     _______  , KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5    ,  KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , _______  ,
-    _______  , _______  , _______  , _______  , _______  , KC_F11   ,  KC_VOLU  , KC_APP   , KC_INS   , KC_PSCR  , _______  , _______  ,
-    _______  , _______  , _______  , _______  , _______  , KC_F12   ,  KC_BRIU  , KC_GRV   , KC_BRK   , _______  , KC_SCRL  , _______  ,
+    _______  , _______ , _______ , _______  ,A(C(KC_TAB)),KC_F11   ,  KC_VOLU  , KC_APP   , KC_INS   , _______  , KC_DEL   , _______  ,
+    _______  , _______  , _______  , _______  , _______  , KC_F12   ,  KC_BRIU  , KC_GRV   , KC_BRK   , KC_PSCR  , KC_SCRL  , _______  ,
                _______  , _______  , _______  , _______  , _______  ,  KC_ESC   , KC_SPC   , _______  , _______  , _______
   ),
 
@@ -52,6 +52,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______  , _______  , _______  , _______  , _______  , _______  ,  _______  , KC_BTN1  , KC_BTN2  , _______  , _______  , _______  ,
                _______  , _______  , _______  , _______  , _______  ,  _______  , _______  , _______  , _______  , _______
   ),
+/*
+  [_GAM1] = LAYOUT_universal(
+    KC_TAB   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,  _______  , _______  , _______  , _______  , _______  , _______  ,
+    KC_LCTL  , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,  _______  , _______  , _______  , _______  , _______  , _______  ,
+    KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,  _______  , _______  , _______  , _______  , _______  , _______  ,
+              DF(0)   , KC_LALT  , L_GAM3   , KC_SPC   , L_GAM2   ,  _______  , _______  , _______  , _______  , _______
+  ),
+
+  [_GAM2] = LAYOUT_universal(
+    _______  , KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,  _______  , _______  , _______  , _______  , _______  , _______  ,
+    _______  , KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  ,  _______  , _______  , _______  , _______  , _______  , _______  ,
+    _______  , KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  ,  _______  , _______  , _______  , _______  , _______  , _______  ,
+               _______  , _______  , KC_TAB   , _______  , KC_ESC   ,  _______  , _______  , _______  , _______  , _______
+  ),
+
+  [_GAM3] = LAYOUT_universal(
+    _______  , _______  , KC_3     , KC_2     , KC_1     , _______  ,  _______  , _______  , _______  , _______  , _______  , _______  ,
+    _______  , KC_0     , KC_6     , KC_5     , KC_4     , _______  ,  _______  , _______  , _______  , _______  , _______  , _______  ,
+    _______  , _______  , KC_9     , KC_8     , KC_7     , _______  ,  _______  , _______  , _______  , _______  , _______  , _______  ,
+               _______  , _______  , KC_TAB   , _______  , KC_ESC   ,  _______  , _______  , _______  , _______  , _______
+  ),
+*/
 };
 
 // clang-format on
