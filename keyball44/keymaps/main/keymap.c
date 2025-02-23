@@ -36,8 +36,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_SYM] = LAYOUT_universal(
     _______  , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,  KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , _______  ,
 //  _______  , JP_AT    , JP_LBRC  , JP_LCBR  , JP_LPRN  , JP_LABK  ,  JP_RABK  , JP_RPRN  , JP_RCBR  , JP_RBRC  , JP_DLR   , _______  ,
-    _______  , JP_AMPR  , JP_MINS  , JP_EXLM  , JP_QUOT  , JP_EQL   ,  KC_LEFT  , KC_DOWN  , KC_UP    , KC_RGHT  , _______  , _______  ,
-    _______  , JP_BSLS  , JP_ASTR  , JP_UNDS  , JP_HASH  , JP_PERC  ,  KC_HOME  , KC_PGDN  , KC_PGUP  , KC_END   , _______  , _______  ,
+    _______  , JP_AMPR  , JP_MINS  , JP_QUOT  , JP_ASTR  , JP_EQL   ,  KC_LEFT  , KC_DOWN  , KC_UP    , KC_RGHT  , _______  , _______  ,
+    _______  , JP_BSLS  , JP_UNDS  , JP_EXLM  , JP_HASH  , JP_PERC  ,  KC_HOME  , KC_PGDN  , KC_PGUP  , KC_END   , _______  , _______  ,
                _______  , _______  , _______  , _______  , _______  ,  _______  , KC_SPC   , _______  , _______  , _______
   ),
 
