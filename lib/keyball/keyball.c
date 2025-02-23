@@ -575,12 +575,3 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 
     return true;
 }
-
-bool is_jis_mode(void) {
-    return keyball_config.is_jis_mode;
-}
-
-void set_jis_mode(bool is_jis_mode) {
-    keyball_config.is_jis_mode = is_jis_mode;
-    eeconfig_update_kb(keyball_config.raw);
-}

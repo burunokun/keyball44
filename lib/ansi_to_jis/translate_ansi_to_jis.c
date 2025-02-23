@@ -19,8 +19,8 @@ const uint16_t translate_map[][2] = {
     { KC_DQUO, S(KC_2)    },
     { KC_HASH, S(KC_3)    },
     { KC_DLR , S(KC_4)    },
-    { KC_AMPR, S(KC_6)    },
     { KC_PERC, S(KC_5)    },
+    { KC_AMPR, S(KC_6)    },
     { KC_QUOT, S(KC_7)    },
     { KC_LPRN, S(KC_8)    },
     { KC_RPRN, S(KC_9)    },
@@ -46,20 +46,19 @@ const uint16_t translate_map[][2] = {
 const uint16_t swap_map[][2] = {
     // clang-format off
     // BEFORE  AFTER
-    // { KC_TILD, S(KC_LCBR) },
     { KC_AT, S(KC_LCBR)   }, // `
     { KC_MINS, S(KC_INT1) }, // _
     { KC_CIRC, S(KC_EQL)  }, // ~
-    { KC_1, KC_DOT        }, // .
-    { KC_2, S(KC_5)       }, // %
+    { KC_1, S(KC_5)       }, // %
+    { KC_2, S(KC_6)       }, // &
     { KC_3, S(KC_RBRC)    }, // {
     { KC_4, S(KC_8)       }, // (
     { KC_5, KC_RBRC       }, // [
     { KC_6, KC_NUHS       }, // ]
     { KC_7, KC_LPRN       }, // )
     { KC_8, S(KC_NUHS)    }, // }
-    { KC_9, S(KC_6)       }, // &
-    { KC_0, KC_COMM       }, // ,
+    { KC_9, KC_COMM       }, // ,
+    { KC_0, KC_DOT        }, // .
     // clang-format on
 };
 
@@ -94,7 +93,6 @@ bool process_record_user_a2j(uint16_t kc, keyrecord_t *record) {
     uint8_t basic_kc = QK_MODS_GET_BASIC_KEYCODE(kc);
 
     if (record->event.pressed) {
-        // uint8_t  mod_state                    = (get_oneshot_mods() & get_mods());
         uint8_t  mod_state                    = get_mods();
         bool     shift_state_or_shift_embeded = (mod_state | mods_kc) & MOD_MASK_SHIFT;
         uint16_t shift_embeded_basic_kc       = shift_state_or_shift_embeded ? S((uint16_t)basic_kc) : basic_kc;
@@ -110,7 +108,7 @@ bool process_record_user_a2j(uint16_t kc, keyrecord_t *record) {
         if (mod_state & MOD_MASK_SHIFT) {
             swapped_key = find_swap(kc);
             del_mods(MOD_MASK_SHIFT);
-            if (swapped_key) {
+            if (swapped_key != 0) {
                 swap_key = true;
                 register_code16(swapped_key);
             } else {

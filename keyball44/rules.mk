@@ -42,7 +42,7 @@ SRC += lib/oledkit/oledkit.c    # OLED utility for Keyball series.
 
 # Include common library
 SRC += lib/keyball/keyball.c
-SRC += lib/ansi_to_jis/translate_ansi_to_jis.c
+# SRC += lib/ansi_to_jis/translate_ansi_to_jis.c
 
 # Disable other features to squeeze firmware size
 SPACE_CADET_ENABLE = no

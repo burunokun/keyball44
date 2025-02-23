@@ -34,8 +34,8 @@
 
 #define TAP_CODE_DELAY 5
 
-#define TAPPING_TERM 200
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
+#define TAPPING_TERM 200
 
 #define ONESHOT_TIMEOUT 500
 
@@ -43,9 +43,9 @@
 #define AUTO_MOUSE_TIME 500
 
 #define DUMMY_MOD_NEUTRALIZER_KEYCODE KC_F24
-#define MODS_TO_NEUTRALIZE {         \
-            MOD_BIT(KC_LEFT_ALT)   , \
-            MOD_BIT(KC_RIGHT_ALT)  , \
-            MOD_BIT(KC_LEFT_GUI)   , \
-            MOD_BIT(KC_RIGHT_GUI)  , \
-        }
+#define MODS_TO_NEUTRALIZE {    \
+            MOD_BIT(KC_LALT)  , \
+            MOD_BIT(KC_RALT)  , \
+            MOD_BIT(KC_LGUI)  , \
+            MOD_BIT(KC_RGUI)  , \
+}
