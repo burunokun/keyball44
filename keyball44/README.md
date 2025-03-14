@@ -14,7 +14,5 @@ A 40% column staggered keyboard with 34mm track ball.
 ### Mods
 
 * Auto Mouse
-* Auto Mouse Activation Threshold (Experimental)
 * One Shot Keys
 * Key Override
-* [m47c4n/qmk-translate-ansi-to-jis](https://github.com/m47ch4n/qmk-translate-ansi-to-jis/tree/main?tab=readme-ov-file)

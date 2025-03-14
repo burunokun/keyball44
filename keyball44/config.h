@@ -28,39 +28,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DIODE_DIRECTION     COL2ROW
 
 // Split parameters
+#define EE_HANDS
 #define SOFT_SERIAL_PIN         D2
-#define SPLIT_HAND_MATRIX_GRID  F7, D4
-// #define SPLIT_HAND_MATRIX_LOW_IS_LEFT
-// #define SPLIT_USB_DETECT
-// #define SPLIT_USB_TIMEOUT       2500
 
 #define SPLIT_TRANSACTION_IDS_KB KEYBALL_GET_INFO, KEYBALL_GET_MOTION, KEYBALL_SET_CPI
-
-// RGB LED settings
-// #define WS2812_DI_PIN       D3
-// #ifdef RGBLIGHT_ENABLE
-// #    define RGBLED_NUM      60
-// #    define RGBLED_SPLIT    { 30, 30 }  // (30 + 29)
-// #    ifndef RGBLIGHT_LIMIT_VAL
-// #        define RGBLIGHT_LIMIT_VAL  150 // limitated for power consumption
-// #    endif
-// #    ifndef RGBLIGHT_VAL_STEP
-// #        define RGBLIGHT_VAL_STEP   15
-// #    endif
-// #    ifndef RGBLIGHT_HUE_STEP
-// #        define RGBLIGHT_HUE_STEP   17
-// #    endif
-// #    ifndef RGBLIGHT_SAT_STEP
-// #        define RGBLIGHT_SAT_STEP   17
-// #    endif
-// #endif
-// #ifdef RGB_MATRIX_ENABLE
-// #    define RGB_MATRIX_SPLIT    { 30, 30 }
-// #endif
-//
-// #ifndef OLED_FONT_H
-// #    define OLED_FONT_H "keyboards/keyball/lib/glcdfont.c"
-// #endif
 
 #if !defined(LAYER_STATE_8BIT) && !defined(LAYER_STATE_16BIT) && !defined(LAYER_STATE_32BIT)
 #    define LAYER_STATE_8BIT

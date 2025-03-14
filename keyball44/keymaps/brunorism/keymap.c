@@ -26,39 +26,32 @@
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-  [_QWERTY] = LAYOUT_universal(
-    JP_TILD  , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,  KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_BSPC  ,
-    LALT_K   , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,  KC_H     , KC_J     , KC_K     , KC_L     , JP_SCLN  , RALT_K   ,
-    OM_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,  KC_N     , KC_M     , KC_COMM  , KC_DOT   , RCTL_K   , OM_RSFT  ,
-               _______  , _______  , KC_LGUI  , KC_SPC   , LCTL_K   ,  L_FUN    , L_SYM    , _______  , _______  , KC_DEL
+  [_QWERTY] = LAYOUT(
+    KC_GRV   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,  KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_BSPC  ,
+    LALT_K   , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,  KC_H     , KC_J     , KC_K     , KC_L     , JP_SCLN  , RCTL_K   ,
+    OM_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,  KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , OM_RSFT  ,
+           _______  , LALT_T(KC_X) , LGUI_K   , KC_SPC   , OM_LCTL  ,  L_FUN    , L_SYM    , KC_DEL
    ),
 
-  [_SYM] = LAYOUT_universal(
+  [_SYM] = LAYOUT(
     _______  , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,  KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , _______  ,
-//  _______  , JP_AT    , JP_LBRC  , JP_LCBR  , JP_LPRN  , JP_LABK  ,  JP_RABK  , JP_RPRN  , JP_RCBR  , JP_RBRC  , JP_DLR   , _______  ,
-    _______  , JP_AMPR  , JP_MINS  , JP_QUOT  , JP_ASTR  , JP_EQL   ,  KC_LEFT  , KC_DOWN  , KC_UP    , KC_RGHT  , _______  , _______  ,
-    _______  , JP_BSLS  , JP_UNDS  , JP_EXLM  , JP_HASH  , JP_PERC  ,  KC_HOME  , KC_PGDN  , KC_PGUP  , KC_END   , _______  , _______  ,
-               _______  , _______  , _______  , _______  , _______  ,  _______  , KC_SPC   , _______  , _______  , _______
+    _______  , JP_CIRC  , JP_MINS  , JP_QUOT  , JP_EXLM  , JP_EQL   ,  KC_LEFT  , KC_DOWN  , KC_UP    , KC_RGHT  , _______  , _______  ,
+    _______  , JP_BSLS  , JP_UNDS  , JP_HASH  , JP_ASTR  , JP_TILD  ,  KC_HOME  , KC_PGDN  , KC_PGUP  , KC_END   , _______  , _______  ,
+               _______  , _______  , _______  , _______  , _______  ,  _______  , KC_SPC   , _______
   ),
 
-  [_FUN] = LAYOUT_universal(
-/*
-    _______  , KC_F1    , KC_F2    , KC_F3    , KC_F4    , _______  ,  KC_SCRL  , KC_7     , KC_8     , KC_9     , _______  , _______  ,
-    _______  , KC_F5    , KC_F6    , KC_F7    , KC_F8    , KC_VOLU  ,  KC_INS   , KC_4     , KC_5     , KC_6     , KC_0     , _______  ,
-    _______  , KC_F9    , KC_F10   , KC_F11   , KC_F12   , KC_BRIU  ,  KC_BRK   , KC_1     , KC_2     , KC_3     , _______  , _______  ,
-               _______  , _______  , _______  , _______  , _______  ,  _______  , KC_SPC   , _______  , _______  , _______
-*/
+  [_FUN] = LAYOUT(
     _______  , KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5    ,  KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , _______  ,
     _______  , _______  , KC_SSHT  , KC_BRK   , _______  , KC_VOLU  ,  KC_F11   , KC_APP   , _______  , _______  , _______  , _______  ,
-    _______  , KC_SCRL  , _______  , _______  , KC_INS   , KC_BRIU  ,  KC_F12   , KC_GRV   , _______  , _______  , _______  , _______  ,
-               _______  , _______  , _______  , _______  , _______  ,  _______  , KC_SPC   , _______  , _______  , _______
+    _______  , KC_SCRL  , _______  , _______  , KC_INS   , KC_BRIU  ,  KC_F12   , _______  , _______  , _______  , _______  , _______  ,
+               _______  , _______  , _______  , _______  , _______  ,  _______  , KC_SPC   , _______
   ),
 
-  [_MOV] = LAYOUT_universal(
+  [_MOV] = LAYOUT(
     _______  , _______  , _______  , _______  , _______  , _______  ,  _______  , _______  , _______  , _______  , _______  , _______  ,
     _______  , _______  , _______  , _______  , _______  , _______  ,  _______  , _______  , KC_SCR   , _______  , _______  , _______  ,
     _______  , _______  , _______  , _______  , _______  , _______  ,  _______  , KC_BTN1  , KC_BTN2  , _______  , _______  , _______  ,
-               _______  , _______  , _______  , _______  , _______  ,  _______  , _______  , _______  , _______  , _______
+               _______  , _______  , _______  , _______  , _______  ,  _______  , _______  , _______
   ),
 };
 
